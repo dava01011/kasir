@@ -31,3 +31,5 @@ Route::get('/biodata', function (){
 
 //menampilkan tampilan login
 Route::get('/login', [LoginController::class, 'index']);
+//Untuk cek login
+Route::post('/login', [LoginController::class, 'cek_login']);

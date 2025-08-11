@@ -112,12 +112,13 @@
 <body>
     <div class="login-card">
         <h3>Login</h3>
-        <form action="" method="POST">
+        <form action="/login" method="POST">
+            @csrf
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="email" class="form-label">Email</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
-                    <input type="text" name="username" id="username" class="form-control" required autofocus>
+                    <input type="text" name="email" id="email" class="form-control" required autofocus>
                 </div>
             </div>
             <div class="mb-3">

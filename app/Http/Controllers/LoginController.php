@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -13,6 +14,38 @@ class LoginController extends Controller
     {
         return view('login');
     }
+
+    public function cek_login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        //cek username/email atau password benar/tersedia
+            if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        //ambil ddata hak_akses dari user yang login
+        $hak_akses = Auth::user()-> hak_akses;
+        // dd($hak_akses);
+        // die;
+        if ($hak_akses == 'admin') {
+            echo"Hak akses adalah admin";
+        }else if ($hak_akses == 'kasir') {
+            echo"Hak akses adalah kasir";
+        }else{
+         echo"Hak akses tidak terdaftar";
+         }
+
+
+    //     echo"<h1>Berhasil Login</h1>";
+    // }else{
+    //     echo"<h1>Gagal Login</h1>";
+     }
+        // dd($request);
+        // die;
+    }
+
 
     /**
      * Show the form for creating a new resource.
